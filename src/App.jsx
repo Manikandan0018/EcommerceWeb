@@ -1,5 +1,5 @@
 // App.jsx
-import { BrowserRouter as Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import  {Home}  from './Home';
 import  {Cart}  from './Cart';
@@ -17,7 +17,7 @@ function App() {
         <Route path="/address" element={<Address />} />
         <Route path="/payment" element={<PaymentOption/>} />
         <Route path="/adminProduct" element={<AdminProduct/>} />
-                <Route path="/adminOrder" element={<AdminOrder/>} />
+        <Route path="/adminOrder" element={<AdminOrder/>} />
       </Routes>
     
   );
