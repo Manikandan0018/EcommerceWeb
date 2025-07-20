@@ -1,5 +1,5 @@
 // App.jsx
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Routes, Route } from 'react-router-dom';
 import './App.css';
 import  {Home}  from './Home';
 import  {Cart}  from './Cart';
@@ -10,7 +10,7 @@ import AdminOrder from './AdminOrder';
 
 function App() {
   return (
-    <Router>
+    
       <Routes basename="/EcommerceWeb">
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
@@ -19,7 +19,7 @@ function App() {
         <Route path="/adminProduct" element={<AdminProduct/>} />
                 <Route path="/adminOrder" element={<AdminOrder/>} />
       </Routes>
-    </Router>
+    
   );
 }
 
