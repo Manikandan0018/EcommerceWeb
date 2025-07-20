@@ -11,7 +11,7 @@ import AdminOrder from './AdminOrder';
 function App() {
   return (
     <Router>
-      <Routes basename="/Ecommerce">
+      <Routes basename="/EcommerceWeb">
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/address" element={<Address />} />

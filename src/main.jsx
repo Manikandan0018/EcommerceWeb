@@ -8,7 +8,7 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/Ecommerce">
+    <BrowserRouter basename="/EcommerceWeb">
       <QueryClientProvider client={queryClient}>
         <App />
       </QueryClientProvider>
