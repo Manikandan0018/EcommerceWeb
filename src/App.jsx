@@ -24,7 +24,7 @@ import  {AdminOrderTrack}  from './AdminProduct/AdminOrderTrack.jsx';
 function App() {
   return (
 
-      <Routes basename="/EcommerceWeb">
+      <Routes basename="/EcommerceWebsite">
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/address" element={<Address />} />
