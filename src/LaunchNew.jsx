@@ -1,24 +1,20 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
-import {
-  FaHeart,
-  FaTruck,
-  FaBolt,
-  FaCrown
-} from "react-icons/fa";
-
-// Dummy Images
-import newp1 from './newp1.jpg';
-import newp2 from './newp2.jpg';
-import newp3 from './newp3.jpg';
-import newp4 from './newp4.jpg';
-import newp5 from './newp5.jpg';
-import newp6 from './newp6.jpg';
-import newp7 from './newp7.jpg';
-import newp8 from './newp8.jpg';
-import newp9 from './newp9.jpg';
+import { FaHeart, FaTruck, FaBolt, FaCrown } from "react-icons/fa";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
+// Dummy Product Images (adjust paths if needed)
+import newp1 from "./newp1.jpg";
+import newp2 from "./newp2.jpg";
+import newp3 from "./newp3.jpg";
+import newp4 from "./newp4.jpg";
+import newp5 from "./newp5.jpg";
+import newp6 from "./newp6.jpg";
+import newp7 from "./newp7.jpg";
+import newp8 from "./newp8.jpg";
+import newp9 from "./newp9.jpg";
+
+// Static product list
 const products = [
   { name: "Elegant Evening Gown", price: "₹2,999", image: newp1 },
   { name: "Casual Denim Jacket", price: "₹1,499", image: newp2 },
@@ -31,24 +27,19 @@ const products = [
   { name: "Classic Black Blazer", price: "₹1,299", image: newp9 },
 ];
 
-
-  
-
 export const LaunchNew = () => {
   const navigate = useNavigate();
   const [liked, setLiked] = useState([]);
 
   const toggleLike = (index) => {
     setLiked((prev) =>
-      prev.includes(index)
-        ? prev.filter((i) => i !== index)
-        : [...prev, index]
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
 
   const handleAddToCart = () => {
-    // Optional: add logic for adding item to cart
-    navigate("/cart"); // navigates to the cart page
+    // Navigate to cart page (you can enhance this to add real cart logic)
+    navigate("/cart");
   };
 
   return (
@@ -67,13 +58,15 @@ export const LaunchNew = () => {
             viewport={{ once: true }}
             className="bg-white border border-gray-200 rounded-lg shadow hover:shadow-md transition-transform hover:scale-[1.02] relative"
           >
-            {/* Like */}
+            {/* Like Button */}
             <button
               className="absolute top-3 right-3 text-gray-400 hover:text-orange-500"
               onClick={() => toggleLike(index)}
             >
               <FaHeart
-                className={liked.includes(index) ? "fill-orange-500" : ""}
+                className={`text-lg ${
+                  liked.includes(index) ? "fill-orange-500" : ""
+                }`}
               />
             </button>
 
@@ -87,6 +80,7 @@ export const LaunchNew = () => {
               <h3 className="font-semibold text-lg">{product.name}</h3>
               <p className="text-orange-600 font-bold">{product.price}</p>
 
+              {/* Tags */}
               <div className="flex flex-wrap gap-2 text-xs text-gray-600">
                 <span className="flex items-center gap-1 bg-orange-100 px-2 py-0.5 rounded-full">
                   <FaTruck className="text-sm" /> Free Delivery
@@ -99,7 +93,10 @@ export const LaunchNew = () => {
                 </span>
               </div>
 
-              <button onClick={handleAddToCart} className="mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md text-sm">
+              <button
+                onClick={handleAddToCart}
+                className="mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md text-sm"
+              >
                 Add to Cart
               </button>
             </div>

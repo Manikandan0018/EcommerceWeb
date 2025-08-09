@@ -2,22 +2,44 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import  {Home}  from './Home';
-import  {Cart}  from './Cart';
-import  {Address}  from './Address';
-import {PaymentOption} from './PaymentOption';
-import AdminProduct from './AdminProduct';
-import AdminOrder from './AdminOrder';
+import  {Cart}  from './Cart/Cart.jsx';
+import  {Address}  from './AdminProduct/Address.jsx';
+import {PaymentOption} from './PaymentOption.jsx';
+import {OrderTracking}  from '../src/OrderTrack/OrderTracking.jsx';
+import AdminProduct from './AdminProduct/AdminProduct.jsx';
+import AdminMenProduct from './AdminProduct/AdminMenProduct.jsx';
+import AdminWomenProduct from './AdminProduct/AdminWomenProduct.jsx';
+import AdminChildProduct from './AdminProduct/AdminChildProduct.jsx';
+import { MensCategory } from "./category/MensCategory"; // ✅ named import
+import 'react-toastify/dist/ReactToastify.css';
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import Login from './signup/Login.jsx';
+import Signup from './signup/SignUp.jsx';
+import { Profile } from './Profile/Profile.jsx';
+import  {AdminOrderTrack}  from './AdminProduct/AdminOrderTrack.jsx';
 
 function App() {
   return (
-    
+
       <Routes basename="/EcommerceWeb">
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/address" element={<Address />} />
         <Route path="/payment" element={<PaymentOption/>} />
         <Route path="/adminProduct" element={<AdminProduct/>} />
-        <Route path="/adminOrder" element={<AdminOrder/>} />
+        <Route path="/adminMenProduct" element={<AdminMenProduct/>} />
+        <Route path="/adminWomenProduct" element={<AdminWomenProduct/>} />
+        <Route path="/adminChildProduct" element={<AdminChildProduct/>} />
+        <Route path="/menCategory" element={<MensCategory/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={<Signup/>} />
+        <Route path="/profile" element={<Profile/>} />
+        <Route path="/order-tracking" element={<OrderTracking/>} />
+        <Route path="/AdminOrderTracking" element={<AdminOrderTrack/>} />
+
       </Routes>
     
   );

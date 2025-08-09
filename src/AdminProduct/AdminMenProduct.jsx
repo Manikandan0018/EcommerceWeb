@@ -1,31 +1,34 @@
 import { useState, useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from 'axios';
 
-const API_URL = "http://localhost:5000/api/AdminProduct";
+const API_URL = "http://localhost:5000/api/AdminMenProduct";
 
-const fetchProducts = async () => {
-  const res = await fetch(`${API_URL}/AdminGetProduct`);
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.message);
-  return data;
-};
 
-export default function AdminProduct() {
+
+export default function AdminMenProduct() {
+
+
+
+
   const queryClient = useQueryClient();
-  const { data: products = [], isLoading } = useQuery({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
-  });
+
+
 
   const [editingProduct, setEditingProduct] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const fileRef = useRef();
 
+   const { data: todos = [], isLoading } = useQuery({
+    queryKey: ['todos'],
+    queryFn: async () => (await axios.get(`${API_URL}/AdminMenProductGet`)).data,
+  });
+
   const mutation = useMutation({
     mutationFn: async ({ formData, isEdit, id }) => {
       const url = isEdit
-        ? `${API_URL}/AdminUpdateProduct/${id}`
-        : `${API_URL}/AdminCreateProduct`;
+        ? `${API_URL}/AdminMenProductUpdate/${id}`
+        : `${API_URL}/AdminMenProductCreate`;
 
       const method = isEdit ? "PUT" : "POST";
 
@@ -46,7 +49,7 @@ export default function AdminProduct() {
 
   const deleteMutation = useMutation({
     mutationFn: async (id) => {
-      const res = await fetch(`${API_URL}/AdminDeleteProduct/${id}`, {
+      const res = await fetch(`${API_URL}/AdminMenProductDelete/${id}`, {
         method: "DELETE",
       });
       const json = await res.json();
@@ -100,10 +103,21 @@ export default function AdminProduct() {
     }
   };
 
+
+  const { data: cartItems = [] } = useQuery({
+  queryKey: ["cart"],
+  queryFn: async () =>
+    (await axios.get("http://localhost:5000/api/CartProductGet", {
+      withCredentials: true,
+    })).data,
+});
+
+
   return (
     <div className="p-6 max-w-3xl mx-auto bg-white shadow-xl rounded-lg">
+    
       <h1 className="text-2xl font-bold mb-4">
-        {editingProduct ? "Edit Product" : "Add New Product"}
+        {editingProduct ? "Edit Product" : "Add Men Product"}
       </h1>
 
       <form
@@ -170,7 +184,7 @@ export default function AdminProduct() {
         <p>Loading products...</p>
       ) : (
         <div className="grid gap-4">
-          {products.map((product) => (
+          {todos.map((product) => (
             <div
               key={product._id}
               className="p-4 border rounded-md shadow-sm flex gap-4"
